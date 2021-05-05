@@ -10,6 +10,7 @@ const { verifIsAuthenticated } = require('xelor');
 
 const error = require('./src/middlewares/errors.middleware');
 const authRoutes = require('./src/routes/auth.routes');
+const departementRoutes = require('./src/routes/Departement.routes');
 
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'access.log'),
@@ -32,6 +33,7 @@ module.exports = (app) => {
     app.use(morgan('combined', { stream: accessLogStream }));
   // Routes
   app.use('/api/auth', authRoutes);
+  app.use('/api/departement', departementRoutes);
 
   app.use(error);
   app.use('*', verifIsAuthenticated);
