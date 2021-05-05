@@ -1,4 +1,5 @@
-const { login ,register } = require('xelor');
+const { login } = require('xelor');
+const { register } = require('../utils/utiles');
 const User = require('../models/user.models');
 const {
   registerValidations,
@@ -6,12 +7,8 @@ const {
 } = require('../validations/auth.validations');
 
 exports.registerController = async (req, res) => {
-  const { email } = req.body;
-  await register(req, res, User, registerValidations, { email });
-};
-exports.registerAdminController = async (req, res) => {
-  const { email } = req.body;
-  await register(req, res, User, registerValidations, { email }, 'Admin');
+  const { email, role } = req.body;
+  await register(req, res, User, registerValidations, { email }, role);
 };
 exports.loginController = async (req, res) => {
   const { email } = req.body;

@@ -41,6 +41,16 @@ export default function NavBar() {
             Ticketing
          </Link>
           <Typography variant="h6" className={classes.title}/>
+           {
+            isAuthenticated && role === "Admin" 
+            &&  (
+              <>
+                 <Link to={`/dashboard/register`}>
+                      <Button >register</Button>
+                </Link>
+              </>
+            )
+          }
           {
             isAuthenticated 
              && (
@@ -53,6 +63,7 @@ export default function NavBar() {
              )
               
           }
+         
         </Toolbar>
       </AppBar>
     </div>

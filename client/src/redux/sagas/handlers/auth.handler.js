@@ -17,7 +17,7 @@ export function* handelGetRegister(action) {
   try {
     const { data } = yield call(requestRegister, action);
     if (data) {
-      yield put(setLogin(data));
+      yield put(registerError(data));
     }
   } catch (error) {
     if (error.response) yield put(registerError(error.response.data));

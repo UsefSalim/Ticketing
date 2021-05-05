@@ -10,10 +10,10 @@ function Routes(props) {
   return (
     <Switch>
         <AuthRoutes exact path="/" component={Login} role={role} auth={auth}/>
-        <AdminRoutes exact path="/dashboard/register" component={Register} role={role} auth={auth}/>
-        <UserRoutes exact  path="/dashboard/user" role={role} auth={auth} component={DashboardUser}/>
-        <AdminRoutes exact path="/dashboard/admin" role={role} auth={auth} component={DashboardAdmin}/>
         <TechRoutes exact path="/dashboard/tech" role={role} auth={auth} component={DashboardTech}/>
+        <UserRoutes exact  path="/dashboard/user" role={role} auth={auth} component={DashboardUser}/>
+        <AdminRoutes exact path="/dashboard/register" component={Register} role={role} auth={auth}/>
+        <AdminRoutes exact path="/dashboard/admin" role={role} auth={auth} component={DashboardAdmin}/>
       </Switch>
   )
 }

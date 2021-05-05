@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const URL = 'http://localhost:5000';
+const URL = 'http://localhost:5000/api';
 
 export function requestIfLoged() {
   return axios.request({

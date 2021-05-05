@@ -31,7 +31,7 @@ module.exports = (app) => {
   app.get('env') === 'development' &&
     app.use(morgan('combined', { stream: accessLogStream }));
   // Routes
-  app.use('/auth', authRoutes);
+  app.use('/api/auth', authRoutes);
 
   app.use(error);
   app.use('*', verifIsAuthenticated);
