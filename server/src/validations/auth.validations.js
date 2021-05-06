@@ -8,6 +8,7 @@ exports.registerValidations = (data) => {
     email: Joi.string().email().required().trim(),
     password: Joi.string().required().min(6),
     role: Joi.string().valid('Admin', 'User', 'Tech'),
+    id_departement: Joi.string(),
   });
   return schema.validate(data);
 };

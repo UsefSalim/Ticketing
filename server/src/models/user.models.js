@@ -30,6 +30,11 @@ const userSchema = Schema({
     type: Date,
     default: Date.now(),
   },
+  id_departement: {
+    type: Schema.Types.ObjectId,
+    ref: 'departement',
+    required: true,
+  },
 });
 
 module.exports = model('user', userSchema);

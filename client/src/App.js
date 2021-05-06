@@ -10,6 +10,7 @@ import DashboardUser from './pages/DashboardUser'
 import DashboardAdmin from './pages/DashboardAdmin'
 import DashboardTech from './pages/DashboardTech'
 import Departement from "./components/Admin/departements/Departement"
+// import AddTicket from "./components/User/AddTicket"
 import {AdminRoutes,AuthRoutes,UserRoutes,TechRoutes} from './components/Routes/ProtectedRoutes'
 const App =()=> {
   const dispatch = useDispatch()
@@ -21,12 +22,13 @@ const {isAuthenticated:auth,role} = useSelector(state => state.authentification)
     <Router>
       <NavBar/>
       <Switch>
-        <AdminRoutes  path="/dashboard/departement" role={role} auth={auth} component={Departement}/>
+        <AuthRoutes  path="/" component={Login} role={role} auth={auth}/>
         <TechRoutes  path="/dashboard/tech" role={role} auth={auth} component={DashboardTech}/>
         <UserRoutes   path="/dashboard/user" role={role} auth={auth} component={DashboardUser}/>
+        {/* <UserRoutes   path="/dashboard/addticket" role={role} auth={auth} component={AddTicket}/> */}
         <AdminRoutes  path="/dashboard/register" component={Register} role={role} auth={auth}/>
         <AdminRoutes  path="/dashboard/admin" role={role} auth={auth} component={DashboardAdmin}/>
-        <AuthRoutes  path="/" component={Login} role={role} auth={auth}/>
+        <AdminRoutes  path="/dashboard/departement" role={role} auth={auth} component={Departement}/>
       </Switch>
     </Router>
   );

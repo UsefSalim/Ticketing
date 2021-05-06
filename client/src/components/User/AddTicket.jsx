@@ -33,7 +33,7 @@ const validationSchema = yup.object({
   role: yup
     .mixed().oneOf(['Admin', 'User', 'Tech'])
 });
-export default function Register()
+export default function AddTicket()
 {
   const classes = useStyles();
   const { registerError } = useSelector(state => state.authentification)
