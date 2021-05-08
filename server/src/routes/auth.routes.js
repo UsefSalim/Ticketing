@@ -9,7 +9,11 @@ const {
 } = require('../controllers/auth.controllers');
 const { authMiddleware } = require('../middlewares/auth.middlewares');
 
-authRoutes.post('/register', authMiddleware('Admin', User), registerController);
+authRoutes.post(
+  '/register',
+  authMiddleware('Admin', null, null, User),
+  registerController
+);
 authRoutes.post('/login', loginController);
 authRoutes.get('/logout', logoutController);
 

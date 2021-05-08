@@ -14,7 +14,7 @@ const ticketSchema = Schema({
   urgence: {
     type: String,
     ennum: ['normal', 'urgent', 'tres urgent'],
-    default: 'normal'
+    default: 'normal',
     required: true,
   },
   description: {
@@ -23,20 +23,19 @@ const ticketSchema = Schema({
   },
   etat: {
     type: String,
-    ennum: ['en attent', 'affecter', 'reafecter','cloturer'],
+    ennum: ['en attent', 'affecté', 're-en attent', 'reafecté', 'cloturé'],
     default: 'en attent',
     required: true,
   },
-  id_user:{
+  id_user: {
     type: Schema.Types.ObjectId,
     ref: 'user',
     required: true,
   },
-  date:{
-    type:Date,
-    default:Date.now()
-  }
-
+  date: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 module.exports = model('ticket', ticketSchema);

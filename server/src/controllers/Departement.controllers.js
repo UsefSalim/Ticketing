@@ -24,6 +24,7 @@ exports.deleteOneController = async (req, res) => {
 };
 
 exports.updateOneController = async (req, res) => {
+  console.log(req.body);
   await xelor.update(req, res, Departement, DepartementValidations);
 };
 

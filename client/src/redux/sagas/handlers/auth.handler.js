@@ -1,7 +1,12 @@
 /* eslint-disable no-console */
-import { call, put } from 'redux-saga/effects';
-import { requestIfLoged, requestLogin, requestLogout ,requestRegister} from '../requests/auth.request';
-import { setLogin, loginError,registerError } from '../../slices/authSlice';
+import { call, put } from "redux-saga/effects";
+import {
+  requestIfLoged,
+  requestLogin,
+  requestLogout,
+  requestRegister,
+} from "../requests/auth.request";
+import { setLogin, loginError, registerError } from "../../slices/authSlice";
 
 export function* handelGetLogin(action) {
   try {

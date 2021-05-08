@@ -9,30 +9,39 @@ const {
   getOneController,
   deleteOneController,
   updateOneController,
-  deletAllController,
+  getAllTech,
 } = require('../controllers/Ticket.controllers');
 
-ticketRoutes.get('/', authMiddleware('Admin', User), getAllController);
-ticketRoutes.delete('/', authMiddleware('Admin', User), deletAllController);
+ticketRoutes.get(
+  '/:type',
+  authMiddleware('Admin', 'User', 'Tech', User),
+  getAllController
+);
 ticketRoutes.post(
   '/add',
-  authMiddleware('Admin' || 'User', User),
+  authMiddleware('Admin', 'User', null, User),
   addController
 );
 ticketRoutes.get(
   '/:_id',
-  authMiddleware('Admin' || 'Tech', User),
+  authMiddleware('Admin', 'Tech', null, User),
   getOneController
 );
 ticketRoutes.delete(
   '/:_id',
-  authMiddleware('Admin', User),
+  authMiddleware('Admin', null, null, User),
   deleteOneController
 );
 ticketRoutes.put(
   '/:_id',
-  authMiddleware('Admin' || 'Tech', User),
+  authMiddleware('Admin', 'Tech', null, User),
   updateOneController
+);
+
+ticketRoutes.get(
+  '/tech/alltech',
+  authMiddleware('Admin', null, null, User),
+  getAllTech
 );
 
 module.exports = ticketRoutes;

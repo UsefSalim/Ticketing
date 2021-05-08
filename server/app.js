@@ -11,6 +11,7 @@ const { verifIsAuthenticated } = require('xelor');
 const error = require('./src/middlewares/errors.middleware');
 const authRoutes = require('./src/routes/auth.routes');
 const departementRoutes = require('./src/routes/Departement.routes');
+const ticketRoutes = require('./src/routes/Ticket.routes');
 
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'access.log'),
@@ -34,6 +35,7 @@ module.exports = (app) => {
   // Routes
   app.use('/api/auth', authRoutes);
   app.use('/api/departement', departementRoutes);
+  app.use('/api/ticket', ticketRoutes);
 
   app.use(error);
   app.use('*', verifIsAuthenticated);

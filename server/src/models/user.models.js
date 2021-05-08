@@ -5,16 +5,16 @@ const { Schema, model } = mongoose;
 const userSchema = Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, 'A user must have a name'],
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+    required: [true, 'A user must have a name'],
+    unique: [true, 'the email must be Unique'],
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'A user must have a password'],
   },
   role: {
     type: String,

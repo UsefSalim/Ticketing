@@ -35,21 +35,12 @@ exports.getAll = async (
   limit = null,
   finder = null
 ) => {
-  let all;
-  if (finder) {
-    all = await Model.find(finder)
-      .populate(populate)
-      .select(select)
-      .sort(sort)
-      .limit(limit);
-  } else {
-    all = await Model.find()
-      .populate(populate)
-      .select(select)
-      .sort(sort)
-      .limit(limit);
-  }
-  if (all) return res.status(200).json(all);
+  const all = await Model.find(finder)
+    .populate(populate)
+    .select(select)
+    .sort(sort)
+    .limit(limit);
+  if (all) console.log(all);
 };
 
 /**
@@ -258,7 +249,12 @@ exports.auth = async (req, res, next) => {
   const token = req.cookies._token;
   if (token) {
     jwt.verify(token, process.env.SECRET_TOKEN, async (err, decodedToken) => {
-      if (!err && decodedToken.data.role === res.Role) {
+      if (
+        !err &&
+        (decodedToken.data.role === res.Role1 ||
+          decodedToken.data.role === res.Role2 ||
+          decodedToken.data.role === res.Role3)
+      ) {
         res.currentUser = await res.Model.findOne({
           _id: decodedToken.data.id,
         }).select('-password');

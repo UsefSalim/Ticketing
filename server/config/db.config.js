@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Fawn = require('fawn');
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -9,3 +10,4 @@ mongoose
   })
   .then(() => console.log('Mongo Db Connected'))
   .catch((err) => console.log(`error connection to the DataBase :${err}`));
+Fawn.init(mongoose);

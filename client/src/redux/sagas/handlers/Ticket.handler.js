@@ -1,17 +1,31 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put } from "redux-saga/effects";
 import {
   requestGetTickets,
   requestAddTickets,
   requestDeleteTickets,
   requestUpdateTickets,
-} from '../requests/Ticket.request';
-import { getTicket, allTickets } from '../../slices/Ticket.slice';
+  requestGetTechnicien,
+} from "../requests/Ticket.request";
+import {
+  getTicket,
+  allTickets,
+  getTechnicient,
+} from "../../slices/Ticket.slice";
 
 export function* handelGetTicket(action) {
   try {
-    const response = yield call(requestGetTickets);
+    const response = yield call(requestGetTickets, action);
     const { data } = response;
     yield put(getTicket(data));
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handelGetTechnicien(action) {
+  try {
+    const response = yield call(requestGetTechnicien);
+    const { data } = response;
+    yield put(getTechnicient(data));
   } catch (error) {
     console.log(error);
   }
@@ -27,15 +41,16 @@ export function* handelAddTicket(action) {
 export function* handelDeleteTicket(action) {
   try {
     yield call(requestDeleteTickets, action);
-    yield put(allTickets());
+    yield put(allTickets("admin"));
   } catch (error) {
     console.log(error);
   }
 }
 export function* handelUpdateTicket(action) {
+  console.log(action);
   try {
     yield call(requestUpdateTickets, action);
-    yield put(allTickets());
+    yield put(allTickets(action.payload.type));
   } catch (error) {
     console.log(error);
   }

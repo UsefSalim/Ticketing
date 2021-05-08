@@ -1,11 +1,15 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put } from "redux-saga/effects";
 import {
   requestGetDepartements,
   requestAddDepartements,
   requestDeleteDepartements,
   requestUpdateDepartements,
-} from '../requests/Departement.request';
-import { getDepartement, allDepartements,errors } from '../../slices/Departement.slice';
+} from "../requests/Departement.request";
+import {
+  getDepartement,
+  allDepartements,
+  errors,
+} from "../../slices/Departement.slice";
 
 export function* handelGetDepartement(action) {
   try {
@@ -21,7 +25,7 @@ export function* handelAddDepartement(action) {
     yield call(requestAddDepartements, action);
     yield put(allDepartements());
   } catch (error) {
-    if(error)  yield put(errors(error.response.data))
+    if (error) yield put(errors(error.response.data));
   }
 }
 export function* handelDeleteDepartement(action) {
@@ -37,6 +41,6 @@ export function* handelUpdateDepartement(action) {
     yield call(requestUpdateDepartements, action);
     yield put(allDepartements());
   } catch (error) {
-    if(error)  yield put(errors(error.response.data))
+    if (error) yield put(errors(error.response.data));
   }
 }

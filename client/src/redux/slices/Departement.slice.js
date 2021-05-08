@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const DepartementsSlice = createSlice({
   name: 'Departement',
   initialState: {
-    Departement:'',
-    Erors :'',
+    Departement: '',
+    Erors: ''
   },
   reducers: {
     getDepartement: (state = this.initialState, action) => {
@@ -12,20 +12,18 @@ const DepartementsSlice = createSlice({
       return {
         ...state,
         Departement,
-        Errors:""
+        Errors: ''
       };
     },
     allDepartements: () => {},
     addDepartement: () => {},
     deleteDepartement: () => {},
     updateDepartement: () => {},
-    errors :(state = this.initialState, action) => {
-      return {
-        ...state,
-        Errors: action.payload
-      };
-    }
-  },
+    errors: (state = this.initialState, action) => ({
+      ...state,
+      Errors: action.payload
+    })
+  }
 });
 export const {
   getDepartement,
