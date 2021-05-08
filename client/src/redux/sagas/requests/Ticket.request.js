@@ -2,10 +2,10 @@ import axios from "axios";
 
 const URL = "http://localhost:5000/api/ticket";
 
-export function requestGetTickets(action) {
+export function requestGetTickets() {
   return axios.request({
     method: "get",
-    url: `${URL}/${action.payload}`,
+    url: `${URL}/`,
   });
 }
 export function requestGetTechnicien() {
@@ -30,13 +30,12 @@ export function requestDeleteTickets(action) {
   });
 }
 export function requestUpdateTickets(action) {
-  const { type, etat } = action.payload;
+  const {  etat } = action.payload;
   return axios.request({
     method: "put",
     url: `${URL}/${action.payload.id}`,
     data: {
       ...action.payload.values,
-      type,
       etat,
     },
   });

@@ -1,7 +1,6 @@
 import { Redirect, Route } from 'react-router-dom'
 
 export const AuthRoutes = ({ component: Component, role, auth, ...rest }) => {
-	console.log({ ...rest })
 	return (
 		<Route
 			{...rest}
@@ -28,7 +27,6 @@ export const UserRoutes = ({ component: Component, role, auth, ...rest }) => (
 	/>
 )
 export const AdminRoutes = ({ component: Component, role, auth, ...rest }) => {
-	console.log({ ...rest })
 	return (
 		<Route
 			render={() =>

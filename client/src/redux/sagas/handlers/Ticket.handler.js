@@ -10,6 +10,7 @@ import {
   getTicket,
   allTickets,
   getTechnicient,
+  getMessage,
 } from "../../slices/Ticket.slice";
 
 export function* handelGetTicket(action) {
@@ -33,7 +34,7 @@ export function* handelGetTechnicien(action) {
 export function* handelAddTicket(action) {
   try {
     yield call(requestAddTickets, action);
-    yield put(allTickets());
+    yield put(getMessage("Ticket Ajouter Avec succées"));
   } catch (error) {
     console.log(error);
   }
@@ -41,7 +42,7 @@ export function* handelAddTicket(action) {
 export function* handelDeleteTicket(action) {
   try {
     yield call(requestDeleteTickets, action);
-    yield put(allTickets("admin"));
+    yield put(allTickets());
   } catch (error) {
     console.log(error);
   }
@@ -50,7 +51,7 @@ export function* handelUpdateTicket(action) {
   console.log(action);
   try {
     yield call(requestUpdateTickets, action);
-    yield put(allTickets(action.payload.type));
+    yield put(allTickets());
   } catch (error) {
     console.log(error);
   }

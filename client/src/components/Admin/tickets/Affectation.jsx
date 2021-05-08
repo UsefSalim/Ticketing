@@ -30,7 +30,7 @@ function Affectation(props) {
       id_tech: data[0]._id,
     },
     onSubmit: (values) => {
-      dispatch(updateTicket({ values, id, type: "admin", etat }));
+      dispatch(updateTicket({ values, id, etat }));
     },
   });
   return (

@@ -55,7 +55,7 @@ function DashboardAdmin(props) {
   };
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(allTickets("admin"));
+    dispatch(allTickets());
   }, [dispatch]);
   React.useEffect(() => {
     dispatch(allTechnicient());

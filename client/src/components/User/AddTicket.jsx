@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import { Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-
+// import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
@@ -53,7 +53,7 @@ const validationSchema = yup.object({
 })
 export default function Register() {
 	const classes = useStyles()
-	const { registerError } = useSelector((state) => state.authentification)
+	const { addMessage } = useSelector((state) => state.tickets)
 	const dispatch = useDispatch()
 	const formik = useFormik({
 		initialValues: {
@@ -64,7 +64,7 @@ export default function Register() {
 		},
 		validationSchema,
 		onSubmit: (values) => {
-		 dispatch(addTicket(values))
+		 dispatch(addTicket(values)) 
 		},
 	})
 	return (
@@ -77,7 +77,7 @@ export default function Register() {
 						onSubmit={formik.handleSubmit}
 						noValidate
 					>
-						{registerError && <Alert color='error'>{registerError}</Alert>}
+						{addMessage && <Alert color='error'>{addMessage}</Alert>}
 						<Grid container spacing={2}>
 							<Grid item xs={12}>
 								<TextField

@@ -13,7 +13,7 @@ const {
 } = require('../controllers/Ticket.controllers');
 
 ticketRoutes.get(
-  '/:type',
+  '/',
   authMiddleware('Admin', 'User', 'Tech', User),
   getAllController
 );

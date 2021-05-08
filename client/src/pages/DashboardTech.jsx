@@ -53,20 +53,18 @@ function DachboardTeck(props) {
   };
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(allTickets("technicien"));
+    dispatch(allTickets());
   }, [dispatch]);
   const { Ticket } = useSelector((state) => state.tickets);
   const handelTreter = (id) => {
     dispatch(
-      updateTicket({ values: null, id, type: "technicien", etat: "cloturé" })
+      updateTicket({  id,  etat: "cloturé" })
     );
   };
   const handelReassigner = (id) => {
     dispatch(
       updateTicket({
-        values: null,
         id,
-        type: "technicien",
         etat: "refusé",
       })
     );

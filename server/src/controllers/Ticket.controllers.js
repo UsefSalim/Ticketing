@@ -8,23 +8,21 @@ const User = require('../models/user.models');
 const { TicketValidations } = require('../validations/Ticket.validations');
 
 exports.addController = async (req, res) => {
-  const { _id } = res.currentUser;
-  console.log(_id);
   await utils.add(req, res, Ticket, TicketValidations, {
-    id_user: _id,
+    id_user: res.currentUser._id,
   });
 };
 
 exports.getAllController = async (req, res) => {
-  const currenUser = res.currentUser;
-  if (req.params.type === 'admin') await xelor.getAll(res, Ticket, 'id_user');
-  else if (req.params.type === 'user')
+  const { _id, role } = res.currentUser;
+  if (role === 'Admin') await xelor.getAll(res, Ticket, 'id_user');
+  else if (role === 'User')
     await xelor.getAll(res, Ticket, null, null, null, null, {
-      id_user: currenUser._id,
+      id_user: _id,
     });
-  else if (req.params.type === 'technicien') {
+  else if (role === 'Tech') {
     const techTicket = await Assigne.find({
-      id_tech: currenUser._id,
+      id_tech: _id,
       etat: { $in: ['affecté', 'reafecté'] },
     }).populate('id_ticket');
     techTicket && res.status(200).json(techTicket);
@@ -46,8 +44,9 @@ exports.deleteOneController = async (req, res) => {
 
 exports.updateOneController = async (req, res) => {
   const task = Fawn.Task();
+  const { _id, role } = res.currentUser;
   const id_ticket = req.params._id;
-  if (req.body.type === 'admin') {
+  if (role === 'Admin') {
     const { id_tech } = req.body;
     const assignedToTechnisien = await Assigne.findOne({ id_ticket, id_tech });
     const etat = assignedToTechnisien ? 'reafecté' : 'affecté';
@@ -62,15 +61,12 @@ exports.updateOneController = async (req, res) => {
       .save('assigne', newAssigne)
       .run({ useMongoose: true });
     if (updateStateAndAddAssigne) return res.status(201).json('updated');
-  } else if (req.body.type === 'technicien') {
-    // const id_tech = res.currentUser;
+  } else if (role === 'Tech') {
     const techTicket = await Assigne.findOne({
-      id_tech: res.currentUser._id,
+      id_tech: _id,
       etat: { $in: ['affecté', 'reafecté'] },
     });
     if (techTicket) {
-      console.log(techTicket);
-      console.log(req.body.etat);
       const updateStateAndcreateAssigne = await task
         .update('ticket', { _id: id_ticket }, { $set: { etat: req.body.etat } })
         .update(

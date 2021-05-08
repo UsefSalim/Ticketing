@@ -49,7 +49,7 @@ function DashboardUser(props) {
   };
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(allTickets("user"));
+    dispatch(allTickets());
   }, [dispatch]);
   const { Ticket } = useSelector((state) => state.tickets);
   return (
