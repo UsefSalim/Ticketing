@@ -12,34 +12,22 @@ const {
   deletAllController,
 } = require('../controllers/Departement.controllers');
 
-departementRoutes.get(
-  '/',
-  authMiddleware('Admin', null, null, User),
-  getAllController
-);
+departementRoutes.get('/', authMiddleware(User, 'Admin'), getAllController);
 departementRoutes.delete(
   '/',
-  authMiddleware('Admin', null, null, User),
+  authMiddleware(User, 'Admin'),
   deletAllController
 );
-departementRoutes.post(
-  '/add',
-  authMiddleware('Admin', null, null, User),
-  addController
-);
-departementRoutes.get(
-  '/:_id',
-  authMiddleware('Admin', null, null, User),
-  getOneController
-);
+departementRoutes.post('/add', authMiddleware(User, 'Admin'), addController);
+departementRoutes.get('/:_id', authMiddleware(User, 'Admin'), getOneController);
 departementRoutes.delete(
   '/:_id',
-  authMiddleware('Admin', null, null, User),
+  authMiddleware(User, 'Admin'),
   deleteOneController
 );
 departementRoutes.put(
   '/:_id',
-  authMiddleware('Admin', null, null, User),
+  authMiddleware(User, 'Admin'),
   updateOneController
 );
 

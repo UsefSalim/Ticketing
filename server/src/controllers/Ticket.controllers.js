@@ -21,11 +21,10 @@ exports.getAllController = async (req, res) => {
       id_user: _id,
     });
   else if (role === 'Tech') {
-    const techTicket = await Assigne.find({
+    await xelor.getAll(res, Assigne, 'id_ticket', null, null, null, {
       id_tech: _id,
       etat: { $in: ['affecté', 'reafecté'] },
-    }).populate('id_ticket');
-    techTicket && res.status(200).json(techTicket);
+    });
   }
 };
 

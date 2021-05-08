@@ -14,34 +14,26 @@ const {
 
 ticketRoutes.get(
   '/',
-  authMiddleware('Admin', 'User', 'Tech', User),
+  authMiddleware(User, 'Admin', 'User', 'Tech'),
   getAllController
 );
-ticketRoutes.post(
-  '/add',
-  authMiddleware('Admin', 'User', null, User),
-  addController
-);
+ticketRoutes.post('/add', authMiddleware(User, 'Admin', 'User'), addController);
 ticketRoutes.get(
   '/:_id',
-  authMiddleware('Admin', 'Tech', null, User),
+  authMiddleware(User, 'Admin', 'Tech'),
   getOneController
 );
 ticketRoutes.delete(
   '/:_id',
-  authMiddleware('Admin', null, null, User),
+  authMiddleware(User, 'Admin'),
   deleteOneController
 );
 ticketRoutes.put(
   '/:_id',
-  authMiddleware('Admin', 'Tech', null, User),
+  authMiddleware(User, 'Admin', 'Tech'),
   updateOneController
 );
 
-ticketRoutes.get(
-  '/tech/alltech',
-  authMiddleware('Admin', null, null, User),
-  getAllTech
-);
+ticketRoutes.get('/tech/alltech', authMiddleware(User, 'Admin'), getAllTech);
 
 module.exports = ticketRoutes;

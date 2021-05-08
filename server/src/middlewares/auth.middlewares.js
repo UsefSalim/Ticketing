@@ -1,6 +1,6 @@
 const { auth } = require('../utils/utiles');
 
-exports.authMiddleware = (Role1, Role2 = null, Role3 = null, Model) => async (
+exports.authMiddleware = (Model, Role1, Role2 = null, Role3 = null) => async (
   req,
   res,
   next
