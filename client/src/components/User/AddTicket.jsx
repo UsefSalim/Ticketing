@@ -1,13 +1,13 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import Avatar from '@material-ui/core/Avatar'
+import {addTicket} from '../../redux/slices/Ticket.slice'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
 import { Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+
 import { useDispatch, useSelector } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
@@ -45,29 +45,28 @@ const validationSchema = yup.object({
 		.string('Enter your type')
 		.min(3, 'type should be of minimum 3 characters length')
 		.required('type is required'),
-	role: yup.mixed().oneOf(['urgent', 'normal', 'tres urgent']),
+	description: yup
+		.string('Enter your Message')
+		.min(10, 'Message should be of minimum 10 characters length')
+		.required('Message is required'),
+	urgence: yup.mixed().oneOf(['urgent', 'normal', 'tres urgent']),
 })
 export default function Register() {
 	const classes = useStyles()
 	const { registerError } = useSelector((state) => state.authentification)
-	const { Departement } = useSelector((state) => state.departement)
 	const dispatch = useDispatch()
 	const formik = useFormik({
 		initialValues: {
-			name: '',
-			email: '',
-			password: '',
-			role: '',
-			id_departement: '',
+			titre: '',
+			type: '',
+			description: '',
+			urgence: '',
 		},
 		validationSchema,
 		onSubmit: (values) => {
-			// dispatch(getRegister(values));
+		 dispatch(addTicket(values))
 		},
 	})
-	// React.useEffect(() => {
-	//   dispatch(allDepartements());
-	// }, [dispatch]);
 	return (
 		<>
 			<Container component='main' maxWidth='xs'>
@@ -128,17 +127,30 @@ export default function Register() {
 									}
 									helperText={formik.touched.urgence && formik.errors.urgence}
 								>
-									<MenuItem value=''>
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value='normal'>normal</MenuItem>
-									<MenuItem value='urgent'>urgent</MenuItem>
-									<MenuItem value='tres urgent'>tres urgent</MenuItem>
+									<MenuItem value="normal">normal</MenuItem>
+									<MenuItem value="urgent">urgent</MenuItem>
+									<MenuItem value="tres urgent">tres urgent</MenuItem>
 								</TextField>
 							</Grid>
-							<Grid item xs={12}>
-								<TextareaAutosize />
+								<Grid item xs={12}>
+								<TextField
+									variant='outlined'
+									required
+									fullWidth
+									multiline
+									rows={7}
+									rowsMax={10}
+									id='message'
+									label='Message'
+									name='description'
+									autoComplete='message'
+									value={formik.values.message}
+									onChange={formik.handleChange}
+									error={formik.touched.message && Boolean(formik.errors.message)}
+									helperText={formik.touched.message && formik.errors.message}
+								/>
 							</Grid>
+
 						</Grid>
 						<Button
 							type='submit'

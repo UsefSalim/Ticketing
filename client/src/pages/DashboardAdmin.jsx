@@ -79,7 +79,7 @@ function DashboardAdmin(props) {
       </Popup>
     ) : null;
   const ReaffecterPopup = (id, etat) =>
-    etat === "re-en attent" ? (
+    etat === "refusé" ? (
       <Popup
         trigger={
           <IconButton aria-label="share" color="primary">

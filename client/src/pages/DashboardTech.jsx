@@ -67,7 +67,7 @@ function DachboardTeck(props) {
         values: null,
         id,
         type: "technicien",
-        etat: "re-en attent",
+        etat: "refusé",
       })
     );
   };

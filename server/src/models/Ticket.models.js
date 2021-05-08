@@ -23,7 +23,7 @@ const ticketSchema = Schema({
   },
   etat: {
     type: String,
-    ennum: ['en attent', 'affecté', 're-en attent', 'reafecté', 'cloturé'],
+    ennum: ['en attent', 'affecté', 'refusé', 'reafecté', 'cloturé'],
     default: 'en attent',
     required: true,
   },

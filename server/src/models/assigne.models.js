@@ -17,6 +17,14 @@ const assigneSchema = Schema({
     type: Date,
     default: Date.now(),
   },
+  etat: {
+    type: String,
+    default: 'affecté',
+  },
+  etat_initial: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = model('assigne', assigneSchema);

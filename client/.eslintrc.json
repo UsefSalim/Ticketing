@@ -4,17 +4,8 @@
     "commonjs": true,
     "es2021": true
   },
-  "extends": ["react-app", "react-app/jest", "prettier"],
-  "plugins": ["prettier"],
+  "extends": ["react-app", "react-app/jest"],
   "parserOptions": {
     "ecmaVersion": 12
-  },
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ]
   }
 }

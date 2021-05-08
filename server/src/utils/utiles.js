@@ -71,26 +71,13 @@ exports.getOne = async (res, Model, finder, populate = null, select = null) => {
  * @param {Object} multer
  * @returns
  */
-exports.add = async (
-  req,
-  res,
-  Model,
-  validation = null,
-  finder = null,
-  multer = null
-) => {
-  let newElement;
-  if (validation) {
-    const { error } = validation(req.body);
-    if (error) return res.status(400).json(error.details[0].message);
-  }
-  if (finder) {
-    const ifExist = await this.ifExist(Model, finder);
-    if (ifExist) return res.status(400).json(`element existant `);
-  }
-  !multer
-    ? (newElement = new Model({ ...req.body }))
-    : (newElement = new Model({ ...req.body, ...multer }));
+exports.add = async (req, res, Model, validation, finder, id_user) => {
+  console.log(id_user);
+  const { error } = validation({ ...req.body, ...id_user });
+  if (error) return res.status(400).json(error.details[0].message);
+  const ifExist = await this.ifExist(Model, finder);
+  if (ifExist) return res.status(400).json(`element existant `);
+  const newElement = new Model({ ...req.body, ...id_user });
   newElement = await newElement.save();
   return res.status(201).json(newElement);
 };

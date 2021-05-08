@@ -12,6 +12,7 @@ specifiers:
   clsx: ^1.1.1
   eslint-config-airbnb: ^18.2.1
   eslint-config-prettier: ^8.3.0
+  eslint-config-react-app: ^6.0.0
   eslint-plugin-prettier: ^3.4.0
   formik: ^2.2.6
   prettier: ^2.2.1
@@ -51,6 +52,7 @@ dependencies:
 
 devDependencies:
   eslint-config-prettier: 8.3.0
+  eslint-config-react-app: 6.0.0
   eslint-plugin-prettier: 3.4.0_ebf24dfb024e1e175bc0d8a614df54d5
   prettier: 2.2.1
 
@@ -3996,7 +3998,6 @@ packages:
 
   /confusing-browser-globals/1.0.10:
     resolution: {integrity: sha512-gNld/3lySHwuhaVluJUKLePYirM3QNCKzVxqAdhJII9/WXKVX5PURzMVJspS1jTslSqjeuG4KMVTSouit5YPHA==}
-    dev: false
 
   /connect-history-api-fallback/1.6.0:
     resolution: {integrity: sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg==}
@@ -5009,6 +5010,30 @@ packages:
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
+    dev: true
+
+  /eslint-config-react-app/6.0.0:
+    resolution: {integrity: sha512-bpoAAC+YRfzq0dsTk+6v9aHm/uqnDwayNAXleMypGl6CpxI9oXXscVHo4fk3eJPIn+rsbtNetB4r/ZIidFIE8A==}
+    engines: {node: ^10.12.0 || >=12.0.0}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^4.0.0
+      '@typescript-eslint/parser': ^4.0.0
+      babel-eslint: ^10.0.0
+      eslint: ^7.5.0
+      eslint-plugin-flowtype: ^5.2.0
+      eslint-plugin-import: ^2.22.0
+      eslint-plugin-jest: ^24.0.0
+      eslint-plugin-jsx-a11y: ^6.3.1
+      eslint-plugin-react: ^7.20.3
+      eslint-plugin-react-hooks: ^4.0.8
+      eslint-plugin-testing-library: ^3.9.0
+    peerDependenciesMeta:
+      eslint-plugin-jest:
+        optional: true
+      eslint-plugin-testing-library:
+        optional: true
+    dependencies:
+      confusing-browser-globals: 1.0.10
     dev: true
 
   /eslint-config-react-app/6.0.0_5d3c8c6278315432d8444ebef3eaf0f3:
