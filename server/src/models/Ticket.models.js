@@ -33,8 +33,8 @@ const ticketSchema = Schema({
     required: true,
   },
   date: {
-    type: Date,
-    default: Date.now(),
+    type: String,
+    default: new Date(Date.now()).toLocaleString(),
   },
 });
 

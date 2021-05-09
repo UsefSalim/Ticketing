@@ -14,7 +14,30 @@ const ObjectID = require('mongoose').Types.ObjectId;
  */
 exports.ifExist = async (Model, finder, populate = null, select = null) =>
   await Model.findOne(finder).populate(populate).select(select);
-
+/**
+ *
+ * @param {Response} res
+ * @param {Object} Model
+ * @param {String} populate
+ * @param {String} select
+ * @param {String} sort
+ * @param {Number} limit
+ * @param {Object} finder
+ * @returns
+ */
+exports.getAll = async (
+  Model,
+  finder = null,
+  populate = null,
+  select = null,
+  sort = null
+) => {
+  const all = await Model.find(finder)
+    .populate(populate)
+    .select(select)
+    .sort(sort);
+  if (all) return all;
+};
 /**
  *
  * @param {Response} res
@@ -26,11 +49,8 @@ exports.ifExist = async (Model, finder, populate = null, select = null) =>
  * @returns
  */
 exports.getOne = async (res, Model, finder, populate = null, select = null) => {
-  if (finder._id && !ObjectID.isValid(finder._id))
-    return res.status(400).json({ message: `l'ID ${finder} n'est pas valide` });
   const single = await this.ifExist(Model, finder, populate, select);
-  if (single) return res.status(200).json(single);
-  return res.status(400).json(`element non existant`);
+  if (single) return single;
 };
 
 /**

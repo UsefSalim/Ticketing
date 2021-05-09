@@ -19,7 +19,7 @@ ticketRoutes.get(
 );
 ticketRoutes.post('/add', authMiddleware(User, 'Admin', 'User'), addController);
 ticketRoutes.get(
-  '/:_id',
+  '/ticket/:_id',
   authMiddleware(User, 'Admin', 'Tech'),
   getOneController
 );

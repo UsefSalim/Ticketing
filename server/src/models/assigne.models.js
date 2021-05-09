@@ -13,9 +13,13 @@ const assigneSchema = Schema({
     ref: 'user',
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now(),
+  date_creation: {
+    type: String,
+    default: new Date(Date.now()).toLocaleString(),
+  },
+  date_modification: {
+    type: String,
+    default: null,
   },
   etat: {
     type: String,

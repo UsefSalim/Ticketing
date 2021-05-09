@@ -5,12 +5,14 @@ import {
   requestDeleteTickets,
   requestUpdateTickets,
   requestGetTechnicien,
+  requestGetOneTickets,
 } from "../requests/Ticket.request";
 import {
   getTicket,
   allTickets,
   getTechnicient,
   getMessage,
+  oneTicket
 } from "../../slices/Ticket.slice";
 
 export function* handelGetTicket(action) {
@@ -52,6 +54,15 @@ export function* handelUpdateTicket(action) {
   try {
     yield call(requestUpdateTickets, action);
     yield put(allTickets());
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handelGetOneTicket(action) {
+  // console.log(action);
+  try {
+    const {data } = yield call(requestGetOneTickets, action);
+    if(data)  yield put(oneTicket(data)); 
   } catch (error) {
     console.log(error);
   }

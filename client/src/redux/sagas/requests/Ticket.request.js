@@ -14,6 +14,12 @@ export function requestGetTechnicien() {
     url: `${URL}/tech/alltech`,
   });
 }
+export function requestGetOneTickets(action) {
+  return axios.request({
+    method: "get",
+    url: `${URL}/ticket/${action.payload}`,
+  });
+}
 export function requestAddTickets(action) {
   return axios.request({
     method: "post",

@@ -34,7 +34,10 @@ exports.getAllTech = async (req, res) => {
 
 exports.getOneController = async (req, res) => {
   const { _id } = req.params;
-  await xelor.getOne(res, Ticket, { _id }, 'id_user');
+  const ticket = await utils.getOne(res, Ticket, { _id }, 'id_user');
+  const historique = await utils.getAll(Assigne, { id_ticket: _id }, 'id_tech');
+  // if (historique) console.log(historique);
+  if (ticket && historique) return res.status(200).json({ ticket, historique });
 };
 
 exports.deleteOneController = async (req, res) => {
@@ -49,6 +52,7 @@ exports.updateOneController = async (req, res) => {
     const { id_tech } = req.body;
     const assignedToTechnisien = await Assigne.findOne({ id_ticket, id_tech });
     const etat = assignedToTechnisien ? 'reafecté' : 'affecté';
+    // const etat_initial = etat === 'affecté' ? 'affecté' : 'refusé';
     const newAssigne = new Assigne({
       id_ticket,
       id_tech,
@@ -71,7 +75,12 @@ exports.updateOneController = async (req, res) => {
         .update(
           'assigne',
           { id_ticket, etat: { $in: ['affecté', 'reafecté'] } },
-          { $set: { etat: req.body.etat } }
+          {
+            $set: {
+              etat: req.body.etat,
+              date_modification: new Date(Date.now()).toLocaleString(),
+            },
+          }
         )
         .run({ useMongoose: true });
       if (updateStateAndcreateAssigne) return res.status(201).json('updated');

@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  allTickets,
-  deleteTicket,
-  allTechnicient,
-} from "../redux/slices/Ticket.slice";
+import
+  {
+    allTickets,
+    deleteTicket,
+    allTechnicient,
+  } from "../redux/slices/Ticket.slice";
 import { makeStyles } from "@material-ui/core/styles";
-import Popup from "reactjs-popup";
-import clsx from "clsx";
+import {DetailsPopup,ReaffecterPopup,UpdatePopup} from '../components/popups/popops'
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
@@ -16,14 +16,11 @@ import CardActions from "@material-ui/core/CardActions";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Affectation from "../components/Admin/tickets/Affectation";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -46,59 +43,23 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
-function DashboardAdmin(props) {
+function DashboardAdmin(props)
+{
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
   const dispatch = useDispatch();
-  React.useEffect(() => {
+  React.useEffect(() =>
+  {
     dispatch(allTickets());
   }, [dispatch]);
-  React.useEffect(() => {
+  React.useEffect(() =>
+  {
     dispatch(allTechnicient());
   }, [dispatch]);
   const { Ticket, Techniciens } = useSelector((state) => state.tickets);
-  const handelDelete = (id) => {
+  const handelDelete = (id) =>
+  {
     dispatch(deleteTicket(id));
   };
-  const UpdatePopup = (id, etat) =>
-    etat === "en attent" ? (
-      <Popup
-        trigger={
-          <IconButton aria-label="share" color="primary">
-            <ShareIcon />
-          </IconButton>
-        }
-        nested
-        modal
-      >
-        {(close) => <Affectation close={close} data={Techniciens} id={id} />}
-      </Popup>
-    ) : null;
-  const ReaffecterPopup = (id, etat) =>
-    etat === "refusé" ? (
-      <Popup
-        trigger={
-          <IconButton aria-label="share" color="primary">
-            <ShareIcon />
-          </IconButton>
-        }
-        nested
-        modal
-      >
-        {(close) => (
-          <Affectation
-            close={close}
-            data={Techniciens}
-            id={id}
-            reafecter={true}
-          />
-        )}
-      </Popup>
-    ) : null;
   return (
     <Container>
       <Box my={3}>
@@ -113,8 +74,8 @@ function DashboardAdmin(props) {
                         {tiket.urgence === "normal"
                           ? "N"
                           : tiket.urgence === "urgent"
-                          ? "U"
-                          : "T"}
+                            ? "U"
+                            : "T"}
                       </Avatar>
                     }
                     title={tiket.titre}
@@ -142,35 +103,17 @@ function DashboardAdmin(props) {
                     <IconButton
                       aria-label="add to favorites"
                       color="danger"
-                      onClick={() => {
+                      onClick={() =>
+                      {
                         handelDelete(tiket._id);
                       }}
                     >
                       <HighlightOffOutlinedIcon />
                     </IconButton>
-                    {UpdatePopup(tiket._id, tiket.etat)}
-                    {ReaffecterPopup(tiket._id, tiket.etat)}
-                    <IconButton
-                      className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                      })}
-                      onClick={handleExpandClick}
-                      aria-expanded={expanded}
-                      aria-label="show more"
-                    >
-                      <ExpandMoreIcon />
-                    </IconButton>
+                    {UpdatePopup(tiket._id, tiket.etat,Techniciens)}
+                    {ReaffecterPopup(tiket._id, tiket.etat,Techniciens)}
+                    {DetailsPopup(tiket._id)}
                   </CardActions>
-                  <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
-                      <Typography paragraph>
-                        <b>Description</b> : {tiket.description}
-                      </Typography>
-                      <Typography paragraph>
-                        <b> Cree par </b>: {tiket.id_user.name}
-                      </Typography>
-                    </CardContent>
-                  </Collapse>
                 </Card>
               </Grid>
             ))}

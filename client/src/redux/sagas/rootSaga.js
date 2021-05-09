@@ -24,13 +24,15 @@ import {
 	addTicket,
 	allTechnicient,
 	updateTicket,
+	getOneTicket,
 } from '../slices/Ticket.slice'
 import {
 	handelDeleteTicket,
 	handelGetTicket,
 	handelGetTechnicien,
 	handelUpdateTicket,
-	handelAddTicket
+	handelAddTicket,
+	handelGetOneTicket
 } from './handlers/Ticket.handler'
 export function* watcherSaga() {
 	yield takeLatest(ifLoged.type, handelIfLoged)
@@ -45,5 +47,6 @@ export function* watcherSaga() {
 	yield takeLatest(deleteTicket.type, handelDeleteTicket)
 	yield takeLatest(updateTicket.type, handelUpdateTicket)
 	yield takeLatest(addTicket.type, handelAddTicket)
+	yield takeLatest(getOneTicket.type, handelGetOneTicket)
 	yield takeLatest(allTechnicient.type, handelGetTechnicien)
 }
