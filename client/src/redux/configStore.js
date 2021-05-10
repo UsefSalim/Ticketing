@@ -12,11 +12,11 @@ const middleware = [sagaMiddleware];
 const reducer = combineReducers({
   authentification: authSlice,
   departement: departementSlice,
-  tickets: ticketSlices
+  tickets: ticketSlices,
 });
 
 export default configureStore({
   reducer,
-  middleware: [...getDefaultMiddleware({ thunk: false }), ...middleware]
+  middleware: [...getDefaultMiddleware({ thunk: false }), ...middleware],
 });
 sagaMiddleware.run(watcherSaga);

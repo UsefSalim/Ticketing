@@ -52,6 +52,7 @@ const validationSchema = yup.object({
     .min(6, "Password should be of minimum 6 characters length")
     .required("Password is required"),
   role: yup.mixed().oneOf(["Admin", "User", "Tech"]),
+  id_departement: yup.string("Choise One of departement"),
 });
 export default function Register() {
   const classes = useStyles();
@@ -68,7 +69,7 @@ export default function Register() {
     },
     validationSchema,
     onSubmit: (values) => {
-      dispatch(getRegister(values));
+      dispatch(getRegister(values)) 
     },
   });
   React.useEffect(() => {
@@ -205,7 +206,9 @@ export default function Register() {
               fullWidth
               variant="contained"
               color="primary"
+              // disabled={loading}
               className={classes.submit}
+              // onClick={()=>{setLoding(!loding)}}
             >
               Sign Up
             </Button>

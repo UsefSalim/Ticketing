@@ -32,7 +32,7 @@ import {
 	handelGetTechnicien,
 	handelUpdateTicket,
 	handelAddTicket,
-	handelGetOneTicket
+	handelGetOneTicket,
 } from './handlers/Ticket.handler'
 export function* watcherSaga() {
 	yield takeLatest(ifLoged.type, handelIfLoged)

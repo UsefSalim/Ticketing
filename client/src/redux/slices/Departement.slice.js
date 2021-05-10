@@ -4,7 +4,7 @@ const DepartementsSlice = createSlice({
   name: 'Departement',
   initialState: {
     Departement: '',
-    Erors: ''
+    Erors: '',
   },
   reducers: {
     getDepartement: (state = this.initialState, action) => {
@@ -12,7 +12,7 @@ const DepartementsSlice = createSlice({
       return {
         ...state,
         Departement,
-        Errors: ''
+        Errors: '',
       };
     },
     allDepartements: () => {},
@@ -21,9 +21,9 @@ const DepartementsSlice = createSlice({
     updateDepartement: () => {},
     errors: (state = this.initialState, action) => ({
       ...state,
-      Errors: action.payload
-    })
-  }
+      Errors: action.payload,
+    }),
+  },
 });
 export const {
   getDepartement,
@@ -31,7 +31,7 @@ export const {
   allDepartements,
   deleteDepartement,
   updateDepartement,
-  errors
+  errors,
 } = DepartementsSlice.actions;
 
 export default DepartementsSlice.reducer;

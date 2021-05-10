@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+
 import { call, put } from "redux-saga/effects";
 import {
   requestIfLoged,

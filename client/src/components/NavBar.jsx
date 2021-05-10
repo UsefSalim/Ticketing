@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link ,NavLink} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -7,6 +7,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { getLogout } from "../redux/slices/authSlice";
+import './NavBar.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,30 +35,33 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <Link to="/">Ticketing</Link>
+          <NavLink exact activeClassName="current" to="/">Ticketing</NavLink>
           <Typography variant="h6" className={classes.title} />
           {isAuthenticated && role === "Admin" && (
             <>
-              <Link to="/dashboard/register">
+              <NavLink exact activeClassName="current" to="/dashboard/register">
                 <Button>register</Button>
-              </Link>
-              <Link to="/dashboard/departement">
+              </NavLink>
+              <NavLink exact activeClassName="current" to="/dashboard/departement">
                 <Button>departement</Button>
-              </Link>
+              </NavLink>
+              <NavLink exact activeClassName="current" to="/dashboard/admin/chart">
+                <Button>Statistics</Button>
+              </NavLink>
             </>
           )}
           {isAuthenticated && role === "User" && (
             <>
-              <Link to="/dashboard/addtickets">
+              <NavLink exact activeClassName="current" to="/dashboard/addtickets">
                 <Button>add Ticket</Button>
-              </Link>
+              </NavLink>
             </>
           )}
           {isAuthenticated && (
             <>
-              <Link to={`/dashboard/${role}`}>
+              <NavLink exact activeClassName="current" to={`/dashboard/${role}`}>
                 <Button>profile</Button>
-              </Link>
+              </NavLink>
               <Button onClick={handelLogout}>Logout</Button>
             </>
           )}

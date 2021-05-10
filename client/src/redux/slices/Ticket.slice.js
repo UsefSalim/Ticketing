@@ -6,7 +6,7 @@ const TicketsSlice = createSlice({
     Ticket: '',
     Techniciens: '',
     addMessage:'',
-    OneTicket:''
+    OneTicket:'',
   },
   reducers: {
     getTicket: (state = this.initialState, action) => {
@@ -14,7 +14,7 @@ const TicketsSlice = createSlice({
       return {
         ...state,
         Ticket,
-        addMessage:''
+        addMessage:'',
       };
     },
     allTickets: () => {},
@@ -26,14 +26,14 @@ const TicketsSlice = createSlice({
       const Techniciens = action.payload;
       return {
         ...state,
-        Techniciens
+        Techniciens,
       };
     },
     getMessage:(state = this.initialState, action) => {
       const addMessage = action.payload;
       return {
         ...state,
-        addMessage
+        addMessage,
       };
     },
     getOneTicket:()=>{},
@@ -42,10 +42,10 @@ const TicketsSlice = createSlice({
       console.log(OneTicket);
       return {
         ...state,
-        OneTicket
+        OneTicket,
       };
     },
-  }
+  },
 });
 export const {
   getTicket,
@@ -57,7 +57,7 @@ export const {
   getTechnicient,
   getMessage,
   getOneTicket,
-  oneTicket
+  oneTicket,
 } = TicketsSlice.actions;
 
 export default TicketsSlice.reducer;

@@ -12,7 +12,7 @@ import {
   allTickets,
   getTechnicient,
   getMessage,
-  oneTicket
+  oneTicket,
 } from "../../slices/Ticket.slice";
 
 export function* handelGetTicket(action) {

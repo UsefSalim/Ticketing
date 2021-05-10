@@ -6,6 +6,7 @@ import
     deleteTicket,
     allTechnicient,
   } from "../redux/slices/Ticket.slice";
+
 import { makeStyles } from "@material-ui/core/styles";
 import {DetailsPopup,ReaffecterPopup,UpdatePopup} from '../components/popups/popops'
 import Card from "@material-ui/core/Card";

@@ -4,7 +4,7 @@ import {addTicket} from '../../redux/slices/Ticket.slice'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 // import { Redirect } from 'react-router-dom'
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import MenuItem from '@material-ui/core/MenuItem'
+import Link from '@material-ui/core/Link'
 import * as yup from 'yup'
 import Alert from '@material-ui/lab/Alert'
 
@@ -53,6 +54,7 @@ const validationSchema = yup.object({
 })
 export default function Register() {
 	const classes = useStyles()
+	const history = useHistory()
 	const { addMessage } = useSelector((state) => state.tickets)
 	const dispatch = useDispatch()
 	const formik = useFormik({
@@ -64,7 +66,7 @@ export default function Register() {
 		},
 		validationSchema,
 		onSubmit: (values) => {
-		 dispatch(addTicket(values)) 
+		 dispatch(addTicket(values)) && history.push('/dashboard/user')
 		},
 	})
 	return (

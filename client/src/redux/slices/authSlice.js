@@ -6,7 +6,7 @@ const authSlice = createSlice({
     role: '',
     isAuthenticated: false,
     loginError: '',
-    registerError: ''
+    registerError: '',
   },
   reducers: {
     ifLoged: () => {},
@@ -17,18 +17,18 @@ const authSlice = createSlice({
       role: action.payload.role,
       isAuthenticated: action.payload.isAuthenticated,
       loginError: '',
-      registerError: ''
+      registerError: '',
     }),
     getLogout: () => {},
     loginError: (state = this.initialState, action) => ({
       ...state,
-      loginError: action.payload
+      loginError: action.payload,
     }),
     registerError: (state = this.initialState, action) => ({
       ...state,
-      registerError: action.payload
-    })
-  }
+      registerError: action.payload,
+    }),
+  },
 });
 
 export const {
@@ -38,6 +38,6 @@ export const {
   ifLoged,
   loginError,
   getLogout,
-  registerError
+  registerError,
 } = authSlice.actions;
 export default authSlice.reducer;
