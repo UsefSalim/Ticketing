@@ -19,4 +19,4 @@ export const adminRoutes = [
     path: "/dashboard/admin/chart",
     component: Chart
   },
-  ]
+]

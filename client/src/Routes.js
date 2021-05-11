@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import { allTickets } from "./redux/slices/Ticket.slice";
 import NavBar from './components/NavBar';
 import Login from './pages/Login';
 import DashboardUser from './pages/DashboardUser';
@@ -15,7 +17,7 @@ import {
 import NotFound from './pages/NotFound';
 
 const Routes = () => {
-  
+ 
   return (
     <>
       <NavBar />

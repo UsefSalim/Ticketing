@@ -52,9 +52,9 @@ const validationSchema = yup.object({
 		.required('Message is required'),
 	urgence: yup.mixed().oneOf(['urgent', 'normal', 'tres urgent']),
 })
-export default function Register() {
+export default function AddTicket() {
 	const classes = useStyles()
-	const history = useHistory()
+	//const history = useHistory()
 	const { addMessage } = useSelector((state) => state.tickets)
 	const dispatch = useDispatch()
 	const formik = useFormik({
@@ -66,7 +66,7 @@ export default function Register() {
 		},
 		validationSchema,
 		onSubmit: (values) => {
-		 dispatch(addTicket(values)) && history.push('/dashboard/user')
+		 dispatch(addTicket(values)) //&& history.push('/dashboard/user')
 		},
 	})
 	return (

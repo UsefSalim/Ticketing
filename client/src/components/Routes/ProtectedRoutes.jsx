@@ -13,11 +13,11 @@ export const AuthRoutes = ({ component: Component, ...rest }) =>
 				!auth ? (
 					<Component />
 				) : auth && role === 'User' ? (
-					<Redirect to={(location.state && location.state.userpath) || '/dashboard/user'} />
+					<Redirect to={(location.state?.userpath) || '/dashboard/user'} />
 				) : auth && role === 'Admin' ? (
-					<Redirect to={(location.state && location.state.adminpath) || '/dashboard/admin'} />
+					<Redirect to={(location.state?.adminpath) || '/dashboard/admin'} />
 				) : auth && role === 'Tech' && (
-					<Redirect to={(location.state && location.state.techpath) || '/dashboard/tech'}/>
+					<Redirect to={(location.state?.techpath) || '/dashboard/tech'}/>
 				)
 			}
 		/>

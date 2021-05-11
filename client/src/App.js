@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ifLoged } from './redux/slices/authSlice';
 function App() {
-  const history = useHistory()
+  // const history = useHistory()
    const dispatch = useDispatch();
   const { isAuthenticated: auth} = useSelector(
     (state) => state.authentification
   );
-  console.log(history ,"App")
+  // console.log(history ,"App")
   React.useEffect(() => {
     dispatch(ifLoged());
   // eslint-disable-next-line react-hooks/exhaustive-deps

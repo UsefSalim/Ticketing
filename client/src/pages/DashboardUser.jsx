@@ -43,14 +43,15 @@ const useStyles = makeStyles((theme) => ({
 function DashboardUser(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
+  const dispatch = useDispatch();
+  React.useEffect(() =>
+  {
+    dispatch(allTickets());
+  }, [dispatch]);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(allTickets());
-  }, [dispatch]);
+
   const { Ticket } = useSelector((state) => state.tickets);
   return (
     <Container>
